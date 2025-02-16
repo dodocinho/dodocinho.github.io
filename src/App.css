@@ -1,0 +1,26 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.almost-full-page {
+  padding: 2rem;
+  height: 70vh;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.contact-footer {
+  position: absolute;
+  bottom: 0;
+  padding: 1rem;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
