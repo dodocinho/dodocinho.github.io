@@ -1,4 +1,6 @@
+import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
+import Shaderslab from "./projects/shaderslab/src/App";
 
 function App() {
   return (
@@ -15,7 +17,11 @@ function App() {
         </div>
       </div>
       <div className="projects">
-        <div>shaderslab</div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/shaderslab" element={<Shaderslab />} />
+          </Routes>
+        </BrowserRouter>
       </div>
     </>
   );
