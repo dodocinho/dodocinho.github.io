@@ -1,50 +1,156 @@
-# React + TypeScript + Vite
+# **🌟 Portfólio do Dodô**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esse é o portfólio do Dodô! 🎨✨  
+Aqui você encontra alguns dos projetos que eu já fiz, e também um guia super útil para o **Dodô do futuro** (que vai esquecer quase tudo 😅).
 
-Currently, two official plugins are available:
+Se você é o Dodô do futuro e está lendo isso, não se preocupe! Vou te guiar passo a passo para adicionar novos projetos ao portfólio. Vamos nessa! 🚀
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## **📚 Guia para Adicionar Novos Projetos**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### **1. Adicionar o Novo Projeto como Submodule**
 
-- Configure the top-level `parserOptions` property like this:
+Primeiro, você precisa adicionar o novo projeto como um **submodule** Git. Isso mantém o projeto separado, mas ainda integrado ao portfólio.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+#### Comando:
+
+```bash
+git submodule add https://github.com/dodocinho/novo-projeto.git src/projects/novo-projeto
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+O que isso faz?
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Adiciona o repositório do novo projeto na pasta `src/projects/novo-projeto`.
+- Mantém o projeto independente, mas vinculado ao portfólio.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### **2. Atualizar o Script update-projects.sh**
+
+O script `update-projects.sh` é mágico! Ele faz o build de todos os projetos e corrige os caminhos no `index.html`. Você precisa adicionar o novo projeto à lista de submodules no script.
+
+Edite o arquivo `update-projects.sh`:
+Localize a lista `SUBMODULES` e adicione o caminho do novo projeto:
+
+```bash
+SUBMODULES=(
+  "src/projects/shaderslab"
+  "src/projects/outro-projeto"
+  "src/projects/novo-projeto"  # 👈 Adicione o novo projeto aqui
+)
 ```
+
+O que isso faz?
+
+- O script agora incluirá o novo projeto no processo de build e correção de caminhos.
+
+### **3. Executar o Script update-projects.sh**
+
+Agora que o novo projeto foi adicionado, é hora de executar o script para fazer o build e integrar o projeto ao portfólio.
+
+Comando:
+
+```bash
+./update-projects.sh
+```
+
+O que isso faz?
+
+- Atualiza todos os submodules.
+- Faz o build de cada projeto.
+- Copia os builds para a pasta `public/projects`.
+- Corrige os caminhos no `index.html` de cada projeto.
+
+### **4. Adicionar uma Rota para o Novo Projeto**
+
+Para que o novo projeto seja acessível no portfólio, você precisa adicionar uma rota no arquivo de rotas do projeto principal.
+
+Edite o arquivo `src/routes.js`:
+Adicione uma nova rota para o projeto:
+
+```javascript
+const Routes = () => (
+  <Router>
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route
+        path="/shaderslab"
+        component={() => {
+          window.location.href = "/projects/shaderslab/index.html";
+          return null;
+        }}
+      />
+      <Route
+        path="/novo-projeto" // 👈 Adicione a nova rota aqui
+        component={() => {
+          window.location.href = "/projects/novo-projeto/index.html";
+          return null;
+        }}
+      />
+    </Switch>
+  </Router>
+);
+```
+
+O que isso faz?
+
+- Cria uma rota para o novo projeto, redirecionando para o build estático.
+
+### **5. Testar Localmente**
+
+Antes de publicar, teste localmente para garantir que tudo está funcionando.
+
+Comando:
+
+```bash
+npm start
+```
+
+O que verificar?
+
+- Acesse http://localhost:3000/novo-projeto e confira se o projeto carrega corretamente.
+
+### **6. Publicar no GitHub Pages**
+
+Se tudo estiver funcionando, é hora de fazer o commit e o push para o repositório.
+
+Comando:
+
+```bash
+git commit -m "Adicionado novo-projeto como submodule"
+git push
+```
+
+O que isso faz?
+
+- Faz o commit e o push para o repositório.
+- O próprio GitHub Pages vai se atualizar automaticamente.
+
+## 🌟 Dicas e Boas Práticas
+
+- Mantenha os submodules atualizados: Sempre que você atualizar um projeto, execute `git submodule update --remote` para puxar as mudanças mais recentes.
+
+## 🚨 Solução de Problemas Comuns
+
+### Projeto não carrega no GitHub Pages
+
+- Verifique se os caminhos no index.html estão corretos (o script já faz isso automaticamente).
+
+- Confira se o build foi copiado para a pasta `public/projects`.
+
+### Erros de dependência no submodule
+
+- Certifique-se de que cada submodule tem suas próprias dependências instaladas (npm install dentro do submodule).
+
+### Rotas quebradas
+
+- Confira se a rota no src/routes.js está correta e apontando para o caminho certo.
+
+## 🎉 Pronto, Dodô do Futuro!
+
+Agora você sabe como adicionar novos projetos ao seu portfólio de forma simples e organizada.
+Se precisar de ajuda, consulte este guia ou abra uma issue no repositório.
+Divirta-se construindo seu portfólio incrível! 🚀✨
+
+Feito com ❤️ pelo Dodô do Passado (e algumas IAs para ajudar)
+
+🌟 Dica do Deepseek: Compartilhe seu portfólio com o mundo e mostre todo o seu talento! 🌟

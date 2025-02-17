@@ -1,10 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
-import Shaderslab from "./projects/shaderslab/src/App";
+import Routes from "./routes";
 
 function App() {
   return (
     <>
+      <Routes />
+
       <div className="almost-full-page">
         <h1>dod0</h1>
         <div className="contact-footer">
@@ -17,11 +18,7 @@ function App() {
         </div>
       </div>
       <div className="projects">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/shaderslab" element={<Shaderslab />} />
-          </Routes>
-        </BrowserRouter>
+        <a href="/shaderslab">Shaderslab</a>
       </div>
     </>
   );
