@@ -125,6 +125,52 @@ O que isso faz?
 - Faz o commit e o push para o repositório.
 - O próprio GitHub Pages vai se atualizar automaticamente.
 
+## **🚀 Fluxo Oficial de Publicação (somente site principal)**
+
+Atualmente, o deploy oficial acontece **apenas** no repositório principal do portfólio.
+
+- Repositório principal (`dodocinho.github.io`): publica automaticamente no GitHub Pages.
+- Submodules (ex.: `shaderslab`): **não publicam** no GitHub Pages.
+
+### Ordem recomendada de commits
+
+1. Faça commit das mudanças do projeto dentro do submodule (código do projeto).
+2. No repositório principal, atualize o ponteiro do submodule e commite.
+3. Faça push no repositório principal para disparar o deploy oficial.
+
+### Sequência de comandos
+
+#### 1) Commit no submodule (mudanças de código)
+
+```bash
+cd src/projects/shaderslab
+git add .
+git commit -m "feat: atualiza shaderslab"
+git push origin main
+```
+
+#### 2) Commit no repositório principal (ponteiro do submodule + ajustes)
+
+```bash
+cd ../../..
+git add src/projects/shaderslab .github/workflows/main.yml README.md
+git commit -m "ci/docs: publica somente no sigte oficial"
+git push origin main
+```
+
+### Teste local antes do push
+
+```bash
+./update-projects.sh
+npm run build
+npm run preview
+```
+
+Depois acesse:
+
+- `http://localhost:4173/`
+- `http://localhost:4173/shaderslab`
+
 ## 🌟 Dicas e Boas Práticas
 
 - Mantenha os submodules atualizados: Sempre que você atualizar um projeto, execute `git submodule update --remote` para puxar as mudanças mais recentes.
@@ -151,6 +197,4 @@ Agora você sabe como adicionar novos projetos ao seu portfólio de forma simple
 Se precisar de ajuda, consulte este guia ou abra uma issue no repositório.
 Divirta-se construindo seu portfólio incrível! 🚀✨
 
-Feito com ❤️ pelo Dodô do Passado (e algumas IAs para ajudar)
-
-🌟 Dica do Deepseek: Compartilhe seu portfólio com o mundo e mostre todo o seu talento! 🌟
+Feito com ❤️ pelo Dodô do Passado
