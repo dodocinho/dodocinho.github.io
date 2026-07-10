@@ -154,7 +154,7 @@ git push origin main
 ```bash
 cd ../../..
 git add src/projects/shaderslab .github/workflows/main.yml README.md
-git commit -m "ci/docs: publica somente no sigte oficial"
+git commit -m "ci/docs: publica somente no site oficial"
 git push origin main
 ```
 
