@@ -20,7 +20,7 @@ function App() {
         <ul>
           {projectItems.map((project) => (
             <li key={project.id}>
-              <a href="/shaderslab" data-text={project.label}>{project.label}</a>
+              <a href="/projects/shaderslab" data-text={project.label}>{project.label}</a>
             </li>
           ))}
         </ul>

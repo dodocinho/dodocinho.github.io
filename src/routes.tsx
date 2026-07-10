@@ -3,7 +3,7 @@ export default function Routes() {
   return (
     <RouterRoutes>
       <Route
-        path="/shaderslab"
+        path="/projects/shaderslab"
         Component={() => {
           window.location.href = "/projects/shaderslab/index.html";
           return null;
