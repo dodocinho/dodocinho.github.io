@@ -131,6 +131,8 @@ Atualmente, o deploy oficial acontece **apenas** no repositório principal do po
 
 - Repositório principal (`dodocinho.github.io`): publica automaticamente no GitHub Pages.
 - Submodules (ex.: `shaderslab`): **não publicam** no GitHub Pages.
+- O deploy do site principal não depende mais de recompilar submodules durante a publicação.
+- Se um submodule falhar ao buildar localmente, isso não deve quebrar o deploy do site principal.
 
 ### Ordem recomendada de commits
 
@@ -157,6 +159,8 @@ git add src/projects/shaderslab .github/workflows/main.yml README.md
 git commit -m "ci/docs: publica somente no site oficial"
 git push origin main
 ```
+
+Se você quiser atualizar o conteúdo estático publicado de um submodule, rode `./update-projects.sh` localmente antes do commit do repositório principal. O script tenta buildar cada submodule de forma independente e pula os que falharem, para não travar o restante da publicação.
 
 ### Teste local antes do push
 
