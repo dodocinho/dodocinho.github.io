@@ -8,7 +8,7 @@ function App() {
   const projectItems = [
     {
       id: "shaderslab",
-      label: "Shaderslab",
+      label: "Shaderslab - Camera FX",
     },
     {
       id: "shadervegas",
