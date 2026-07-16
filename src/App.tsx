@@ -7,10 +7,14 @@ import whatsappIcon from "./assets/icons/whatsapp.svg";
 function App() {
   const projectItems = [
     {
-    id: `shaderslab`,
-    label: "Shaderslab",
-  }
-]
+      id: "shaderslab",
+      label: "Shaderslab",
+    },
+    {
+      id: "shadervegas",
+      label: "Vegas - Shader + UI",
+    },
+  ];
 
   return (
     <>
@@ -20,7 +24,7 @@ function App() {
         <ul>
           {projectItems.map((project) => (
             <li key={project.id}>
-              <a href="/projects/shaderslab" data-text={project.label}>{project.label}</a>
+              <a href={`/projects/${project.id}`} data-text={project.label}>{project.label}</a>
             </li>
           ))}
         </ul>

@@ -9,6 +9,13 @@ export default function Routes() {
           return null;
         }}
       />
+      <Route
+        path="/projects/shadervegas"
+        Component={() => {
+          window.location.href = "/projects/shadervegas/index.html";
+          return null;
+        }}
+      />
     </RouterRoutes>
   );
 }

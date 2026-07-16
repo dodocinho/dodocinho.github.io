@@ -5,7 +5,7 @@ set -u
 # Lista de submodules (caminho relativo ao projeto principal)
 SUBMODULES=(
   "src/projects/shaderslab"
-  # "src/projects/outro-projeto"
+  "src/projects/shadervegas"
 )
 
 PROJECT_ROOT=$(pwd)
@@ -45,6 +45,8 @@ for SUBMODULE in "${SUBMODULES[@]}"; do
   # Corrige os caminhos no index.html
   echo "Ajustando caminhos no index.html de $PROJECT_NAME..."
   sed -i.bak \
+    -e "s|href=\"/|href=\"/projects/$PROJECT_NAME/|g" \
+    -e "s|src=\"/|src=\"/projects/$PROJECT_NAME/|g" \
     -e "s|href='/|href='/projects/$PROJECT_NAME/|g" \
     -e "s|src='/|src='/projects/$PROJECT_NAME/|g" \
     "$PROJECT_ROOT/public/projects/$PROJECT_NAME/index.html"

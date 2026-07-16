@@ -1,3 +1,6 @@
 [submodule "src/projects/shaderslab"]
 	path = src/projects/shaderslab
 	url = https://github.com/dodocinho/shaderslab.git
+[submodule "src/projects/shadervegas"]
+	path = src/projects/shadervegas
+	url = https://github.com/dodocinho/shadervegas.git
